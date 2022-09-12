@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1{
+        text-align: center;
+    }
+    
+    #outline{
+        border: 3px solid black;
+        border-radius: 10px;
+        margin: 130px 100px;
+        background: url(/images.png);
+    }
+
+    button{
+        margin-left: 3px;
+        background-color: red;
+        border-radius: 4px;
+        cursor: pointer;
+        height: 20px;
+        width: 40px;
+
+    }
+    button:hover{
+        background-color: white;
+        color: black;
+    }
+    .images{
+        height: 40px;
+        width: 40px;
+        margin-left: 20px;
+    }
+    #heading{
+        text-align: center;
+        color: #fff;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 40px;
+    }
+    .rooms{
+        border: 3px solid black;
+        height: 100px;
+        width: 100px;
+        margin: 3px 3px;
+        margin-bottom: 15px;    
+        background-color: lightgray;
+    }
+    .rooms img{
+        align-items: center;
+        justify-content: center;
+    }
+    .container{
+        display: flex;
+        margin-left: 29px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+    .roomheading{
+        text-align: center;
+    }
+    .outputbox{
+        border: 3px solid rgb(45, 43, 43);
+        height: 30px;
+        margin-top: 105px;
+        background-color: black;
+    }
+    .outputbox p{
+        margin-top: 4px;
+    }
+    #resultbox{
+        text-align: center;
+        margin-top: 0px;
+        padding: 12px 12px;
+        background-color: black;
+        color: white;
+    }
+    #result{
+        margin-top: 80px;
+        font-size: 30px;
+        color: #fff;
+        background-color: black;
+        color: white;
+    }
+    @media screen and (max-width: 600px){
+        .container{
+            display: flex;
+            /* flex-direction: column; */
+            flex-wrap: wrap;
+        }
+        #result{
+            font-size: 12px;
+            margin-top: 2px;
+        }
+        #resultbox{
+            font-size: 12px;
+            margin-top: 12px;
+        }
+        #heading{
+            font-size: 20px;
+        }
+        #outline{
+            margin: 10px 0px;
+        }
+        .outputbox{
+            margin-top: 2px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+    }
+
+</style>
+<body>
+
+    <div id="outline">
+        <h3 id="heading">Room Meter checker!!</h3>
+        <div class="container">
+            
+            <div id="room1" class="rooms">
+                <p class="roomheading">Room 1</p>
+                <img src="/bulb on and off/room1off.png" alt="" id="image1" class="images">
+                <br>
+                    <button id="room1toon" onclick="turnon1func() ,audioon()">ON</button>
+                     <button id="room1tooff" onclick="turnoff1func() ,audioon() ">OFF</button>
+            </div>
+            <div id="room2" class="rooms">
+                <p class="roomheading">Room 2</p>
+                <img src="/bulb on and off/room2off.png" alt="" id="image2" class="images">
+                <br>
+                    <button id="room2toon" onclick="turnon2func() ,audioon()">ON</button>
+                     <button id="room2tooff" onclick="turnoff2func() ,audioon()">OFF</button>
+            </div>
+            <div id="room3" class="rooms">
+                <p class="roomheading">Room 3</p>
+                <img src="/bulb on and off/room3off.png" alt="" id="image3" class="images">
+                <br>
+                    <button id="room3toon" onclick="turnon3func() ,audioon()">ON</button>
+                     <button id="room3tooff" onclick="turnoff3func() ,audioon()">OFF</button>
+            </div>
+            <div id="room4" class="rooms">
+                <p class="roomheading">Room 4</p>
+                <img src="/bulb on and off/room4off.png" alt="" id="image4" class="images">
+                <br>
+                    <button id="room4toon" onclick="turnon4func() ,audioon()">ON</button>
+                     <button id="room4tooff" onclick="turnoff4func() ,audioon()">OFF</button>
+            </div>
+            <div id="room5" class="rooms">
+                <p class="roomheading">Room 5</p>
+                <img src="/bulb on and off/room5off.png" alt="" id="image5" class="images">
+                <br>
+                    <button id="room5toon" onclick="turnon5func() ,audioon()">ON</button>
+                     <button id="room5tooff" onclick="turnoff5func() ,audioon()">OFF</button>
+            </div>
+            
+            <br>
+            
+    
+    
+        </div>
+        <h4 id="result" style="text-align: center;"></h4>
+        <div class="outputbox">
+            <p style="color: white; text-align: center;">One 100 watt bulb consumes 1 unit electricity on operating for 10 hours. </p>
+        </div>
+        <h2 id="resultbox"></h2>
+        <audio src="/click.mp3" id="audio" autostart="false"></audio>
+    </div>
+
+    
+    <script>
+        var count =0;  
+        var room1bool = 0;
+        var room2bool = 0;
+        var room3bool = 0;
+        var room4bool = 0;
+        var room5bool = 0;
+
+        const turnon1func=()=>{
+            if(room1bool==0){
+                document.getElementById('image1').src='/bulb on and off/room1on.png';
+                count++;
+                room1bool =1;
+                document.getElementById('result').innerHTML=`No of bulbs glowing are:${count}`;
+                document.getElementById('resultbox').innerHTML=`Power consumed in one month=${count*2.4*30}units .`;
+            }
+        }
+
+        
+        const turnoff1func=()=>{
+            if(room1bool==1){
+                document.getElementById('image1').src='/bulb on and off/room1off.png';
+                count--;
+                room1bool=0;
+                document.getElementById('result').innerHTML=`No of bulbs glowing are:${count}`;
+                document.getElementById('resultbox').innerHTML=`Power consumed in one month=${count*2.4*30}units .`;
+                
+            }
+            
+            
+        }
+        const turnon2func=()=>{
+            if(room2bool==0){
+                document.getElementById('image2').src='/bulb on and off/room2on.png';
+                count++;
+                room2bool=1;
+                document.getElementById('result').innerHTML=`No of bulbs glowing are:${count}`;
+                document.getElementById('resultbox').innerHTML=`Power consumed in one month=${count*2.4*30}units .`;
+            }
+        }
+        const turnoff2func=()=>{
+            if(room2bool==1){
+                document.getElementById('image2').src='/bulb on and off/room2off.png';
+                count--;
+                room2bool=0;
+                document.getElementById('result').innerHTML=`No of bulbs glowing are:${count}`;
+                document.getElementById('resultbox').innerHTML=`Power consumed in one month=${count*2.4*30}units .`;
+            }
+        }
+        const turnon3func=()=>{
+            if(room3bool==0){
+                document.getElementById('image3').src='/bulb on and off/room3on.png';
+                count++;
+                room3bool=1;
+                document.getElementById('result').innerHTML=`No of bulbs glowing are:${count}`;
+                document.getElementById('resultbox').innerHTML=`Power consumed in one month=${count*2.4*30}units .`;
+            }
+        }
+        const turnoff3func=()=>{
+            if(room3bool==1){
+                document.getElementById('image3').src='/bulb on and off/room3off.png';
+                count--;
+                room3bool=0;
+                document.getElementById('result').innerHTML=`No of bulbs glowing are:${count}`;
+                document.getElementById('resultbox').innerHTML=`Power consumed in one month=${count*2.4*30}units .`;
+            }
+        }
+        const turnon4func=()=>{
+            if(room4bool==0){
+                document.getElementById('image4').src='/bulb on and off/room4on.png';
+                count++;
+                room4bool=1;
+                document.getElementById('result').innerHTML=`No of bulbs glowing are:${count}`;
+                document.getElementById('resultbox').innerHTML=`Power consumed in one month=${count*2.4*30}units .`;
+            }
+        }
+        const turnoff4func=()=>{
+            if(room4bool==1){
+                document.getElementById('image4').src='/bulb on and off/room4off.png';
+                count--;
+                room4bool=0;
+                document.getElementById('result').innerHTML=`No of bulbs glowing are:${count}`;
+                document.getElementById('resultbox').innerHTML=`Power consumed in one month=${count*2.4*30}units .`;
+            }
+        }
+        const turnon5func=()=>{
+            if(room5bool==0){
+                document.getElementById('image5').src='/bulb on and off/room5on.png';
+                count++;
+                room5bool=1;
+                document.getElementById('result').innerHTML=`No of bulbs glowing are:${count}`;
+                document.getElementById('resultbox').innerHTML=`Power consumed in one month=${count*2.4*30}units .`;
+            }
+        }
+        const turnoff5func=()=>{
+            if(room5bool==1){
+                document.getElementById('image5').src='/bulb on and off/room5off.png';
+                count--;
+                room5bool=0;
+                document.getElementById('result').innerHTML=`No of bulbs glowing are:${count}`;
+                document.getElementById('resultbox').innerHTML=`Power consumed in one month=${count*2.4*30}units .`;
+            }
+        }
+        
+      let audio = document.getElementById('audio');
+        function audioon(){
+            audio.play();
+        }
+    
+    </script>
+</body>
+</html>
